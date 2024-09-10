@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+
+}
+.nav-link {
+    color:whitesmoke !important;
+}
+.navbar-brand{
+    color:whitesmoke !important;
+}
+.address-container{
+    background-color: #f1f1f1;
+}
+
+
+#hero {
+    background-attachment: fixed;
+}
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url(https://unsplash.com/photos/a2NRu2Wxa2o/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjgyMzU3NTcz&force=true&w=640) top right;
+    background-size: cover;
+    color: #f1f1f1;
+}
+#hero .btn-about {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 30px;
+    color: #fff;
+    background: #34b7a7;
+}
+.col-skill{
+    text-transform: uppercase;
+}
+.btn-employement {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 30px;
+    color: #fff;
+    background: #34b7a7;
+}
+#footer {
+    background: #e9e8e6;
+    padding: 30px 0;
+    color: #222222;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 3px;
+}
