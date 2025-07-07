@@ -37,7 +37,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # For PR integration
           action: "upload"
           app_location: "/" # root of your Angular code
-          output_location: "dist/rpsingh" # replace with actual output folder name
+          output_location: "dist/portfoliowebsite" # replace with actual output folder name
           api_location: ""
           skip_app_build: true
 
