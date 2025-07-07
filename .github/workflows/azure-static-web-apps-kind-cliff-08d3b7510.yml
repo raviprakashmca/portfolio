@@ -36,4 +36,5 @@ jobs:
           action: "upload"
           app_location: "."                        # Project root
           output_location: "dist/rpsingh/browser"  # Confirmed from your screenshot
-          api_location: ""                         # No backend API
+          api_location: ""
+          skip_app_build: true                         # No backend API
