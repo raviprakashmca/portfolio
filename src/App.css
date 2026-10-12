@@ -1,10 +1,38 @@
 .page {
-  max-width: 820px;
+  position: relative;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 28px;
 }
 
-/* ---------- Top bar ---------- */
+/* ---------- Cursor spotlight (desktop) ---------- */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(
+    560px circle at var(--mx, 50%) var(--my, 30%),
+    var(--accent-soft),
+    transparent 70%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .page:hover .spotlight {
+    opacity: 1;
+  }
+}
+
+.layout,
+.topbar {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Top bar (small screens) ---------- */
 .topbar {
   position: sticky;
   top: 0;
@@ -51,13 +79,14 @@
   border-bottom-color: var(--accent);
 }
 
-/* ---------- Hero ---------- */
-.hero {
+/* ---------- Intro ---------- */
+.intro {
   padding: 112px 0 96px;
 }
 
 .eyebrow,
 .section-index,
+.side-nav-index,
 .role-dates,
 .tagline,
 .score,
@@ -69,11 +98,43 @@
 }
 
 .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--accent);
   margin-bottom: 20px;
 }
 
-.hero h1 {
+.status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.intro h1 {
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(48px, 9vw, 84px);
@@ -102,6 +163,10 @@
   margin-bottom: 36px;
 }
 
+.side-nav {
+  display: none;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -119,11 +184,12 @@
   font-weight: 500;
   color: var(--ink);
   text-decoration: none;
-  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .btn:hover {
   border-color: var(--ink);
+  transform: translateY(-1px);
 }
 
 .btn-primary {
@@ -135,6 +201,38 @@
 .btn-primary:hover {
   background: var(--accent);
   border-color: var(--accent);
+}
+
+.socials {
+  display: flex;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.socials a:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.socials svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ---------- Sections ---------- */
@@ -169,30 +267,33 @@
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 48px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  overflow: hidden;
+  gap: 12px;
+  margin-top: 40px;
 }
 
 .metrics > div {
   display: flex;
   flex-direction: column-reverse;
-  gap: 6px;
-  padding: 24px;
+  gap: 8px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: border-color 0.25s, transform 0.25s;
 }
 
-.metrics > div + div {
-  border-left: 1px solid var(--line);
+.metrics > div:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
 }
 
 .metrics dd {
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: 42px;
   line-height: 1;
   color: var(--ink);
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .metrics dt {
@@ -202,22 +303,41 @@
 /* ---------- Experience ---------- */
 .timeline {
   display: grid;
+  gap: 4px;
 }
 
 .role {
+  position: relative;
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 24px;
-  padding: 22px 0;
-  border-bottom: 1px dashed var(--line);
+  padding: 18px 20px;
+  margin: 0 -20px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: background 0.25s, border-color 0.25s;
 }
 
-.role:first-child {
-  padding-top: 0;
+.role-featured {
+  background: var(--surface);
+  border-color: var(--line);
+  margin-bottom: 12px;
 }
 
-.role:last-child {
-  border-bottom: 0;
+@media (hover: hover) {
+  .timeline:hover .role {
+    opacity: 0.55;
+  }
+
+  .timeline .role:hover {
+    opacity: 1;
+    background: var(--surface);
+    border-color: var(--line);
+  }
+
+  .role {
+    transition: background 0.25s, border-color 0.25s, opacity 0.25s;
+  }
 }
 
 .role-dates {
@@ -240,6 +360,11 @@
 .role .company {
   font-weight: 400;
   color: var(--text);
+  transition: color 0.2s;
+}
+
+.role:hover .company {
+  color: var(--accent);
 }
 
 .role-meta {
@@ -302,6 +427,15 @@
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
+  cursor: default;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.skill-group li:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
 }
 
 /* ---------- Education ---------- */
@@ -319,6 +453,12 @@
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--surface);
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.education li:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .education h3 {
@@ -353,7 +493,7 @@
 
 .contact-list li {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 24px;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
@@ -400,7 +540,144 @@
   color: var(--ink);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    background 0.25s,
+    border-color 0.25s;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .status-dot::after {
+    animation: none;
+  }
+
+  .spotlight {
+    display: none;
+  }
+}
+
+/* ---------- Desktop: two-column layout ---------- */
+@media (min-width: 1024px) {
+  .page {
+    padding: 0 48px;
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 72px;
+  }
+
+  .intro {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 96px 0 56px;
+  }
+
+  .intro h1 {
+    font-size: clamp(56px, 5.2vw, 76px);
+  }
+
+  .tagline {
+    margin-bottom: 0;
+  }
+
+  .side-nav {
+    display: grid;
+    gap: 2px;
+    margin-top: 56px;
+  }
+
+  .side-nav a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    padding: 8px 0;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .side-nav-index {
+    font-size: 12px;
+    width: 18px;
+  }
+
+  .side-nav-line {
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.25s ease, background 0.25s;
+  }
+
+  .side-nav a:hover,
+  .side-nav a.is-active {
+    color: var(--ink);
+  }
+
+  .side-nav a:hover .side-nav-line,
+  .side-nav a.is-active .side-nav-line {
+    width: 64px;
+  }
+
+  .side-nav a.is-active .side-nav-line {
+    background: var(--accent);
+  }
+
+  .content {
+    padding-top: 72px;
+  }
+
+  .content .section:first-child {
+    border-top: 0;
+    padding-top: 24px;
+  }
+
+  html {
+    scroll-padding-top: 24px;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 700px) {
+  .intro {
+    padding: 48px 0 32px;
+  }
+
+  .side-nav {
+    margin-top: 28px;
+  }
+}
+
+/* ---------- Mobile ---------- */
 @media (max-width: 680px) {
   .page {
     padding: 0 16px;
@@ -414,7 +691,7 @@
     font-size: 13px;
   }
 
-  .hero {
+  .intro {
     padding: 72px 0 64px;
   }
 
@@ -430,9 +707,19 @@
     grid-template-columns: 1fr;
   }
 
-  .metrics > div + div {
-    border-left: 0;
-    border-top: 1px solid var(--line);
+  .role {
+    margin: 0;
+    padding: 18px 0;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .role-featured {
+    padding: 18px 16px;
+    margin: 0 -16px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
   }
 
   .role,

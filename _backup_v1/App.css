@@ -1,0 +1,449 @@
+.page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 64px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.monogram {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topbar nav a {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.topbar nav a:hover,
+.topbar nav a.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 112px 0 96px;
+}
+
+.eyebrow,
+.section-index,
+.role-dates,
+.tagline,
+.score,
+.contact-list span,
+.metrics dt {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(48px, 9vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+
+.lede {
+  font-family: var(--serif);
+  font-size: clamp(21px, 3vw, 26px);
+  line-height: 1.4;
+  color: var(--text);
+  max-width: 30ch;
+  margin-bottom: 20px;
+}
+
+.lede em {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.tagline {
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--ink);
+}
+
+.btn-primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 36px;
+}
+
+.section-index {
+  color: var(--accent);
+}
+
+.prose {
+  display: grid;
+  gap: 18px;
+  max-width: 64ch;
+}
+
+/* ---------- Metrics ---------- */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.metrics > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+  padding: 24px;
+}
+
+.metrics > div + div {
+  border-left: 1px solid var(--line);
+}
+
+.metrics dd {
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.metrics dt {
+  color: var(--muted);
+}
+
+/* ---------- Experience ---------- */
+.timeline {
+  display: grid;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.role:first-child {
+  padding-top: 0;
+}
+
+.role:last-child {
+  border-bottom: 0;
+}
+
+.role-dates {
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.role h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.role .at {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.role .company {
+  font-weight: 400;
+  color: var(--text);
+}
+
+.role-meta {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.highlights {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 15.5px;
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.75em;
+  width: 8px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ---------- Skills ---------- */
+.skills {
+  display: grid;
+  gap: 28px;
+}
+
+.skill-group {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+}
+
+.skill-group h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  padding-top: 5px;
+}
+
+.skill-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-group li {
+  font-size: 14px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ---------- Education ---------- */
+.education {
+  display: grid;
+  gap: 14px;
+}
+
+.education li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.education h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.education p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.score {
+  flex-shrink: 0;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ---------- Contact ---------- */
+.contact-lede {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 34ch;
+  margin-bottom: 32px;
+}
+
+.contact-list li {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-list li:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.contact-list span {
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.contact-list a,
+.contact-list p {
+  color: var(--ink);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-list a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px 0 48px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--ink);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 680px) {
+  .page {
+    padding: 0 16px;
+  }
+
+  .topbar nav {
+    gap: 16px;
+  }
+
+  .topbar nav a {
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 72px 0 64px;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-heading {
+    font-size: 28px;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .role,
+  .skill-group,
+  .contact-list li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .education li {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
